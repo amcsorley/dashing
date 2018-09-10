@@ -1,8 +1,8 @@
-#Read and write Dash spi flash through wifi
+# Read and write Dash spi flash through wifi
 
-###In setup mode Dash button has an open wifi named "Amazon ConfigureMe"
+### In setup mode Dash button has an open wifi named "Amazon ConfigureMe"
 
-####When the user configures it their wifi credentials are leaked on open wifi through http post
+#### When the user configures it their wifi credentials are leaked on open wifi through http post
 
 ```
 POST / HTTP/1.1
@@ -25,7 +25,7 @@ idValue=Kobayashi+Heavy+Industries&
 amzn_pw=badpassword8
 ```
 
-###Flash endpoint on web service can be seen in string dump of firmware
+### Flash endpoint on web service can be seen in string dump of firmware
 ```
 text/html
 /flash
@@ -36,7 +36,7 @@ image/png
 hex:
 ```
 
-####And some commands
+#### And some commands
 ```
 addr
 sha1
@@ -51,7 +51,7 @@ update
  blocks=%d
 ```
 
-####Running bad commands through the endpoint gives some feedback on the serial output
+#### Running bad commands through the endpoint gives some feedback on the serial output
 ```
 DMA overrun
 cmd = *; addr = 0; len = 0
@@ -62,7 +62,7 @@ DMA overrun
 Fail Fast Failure at index 1
 ```
 
-####Commands look like 
+#### Commands look like 
 ```
 ?cmd=Command&len=LengthInHex&addr=StartAddressInHex
 ```
@@ -72,11 +72,11 @@ http://192.168.0.1/flash?cmd=read&len=100000&addr=0
 read 2mb spi flash rom
 http://192.168.0.1/flash?cmd=read&len=200000&addr=0
 
-####write command works on spi rom but need to run erase first and wants to write in 256 byte chunks
+#### write command works on spi rom but need to run erase first and wants to write in 256 byte chunks
 ```
 http://192.168.0.1/flash?cmd=erase&len=100000&addr=0
 ```
-###bash script to write binary to spi in chunks
+### bash script to write binary to spi in chunks
 ```bash
 mkdir -p chunks
 cd chunks
